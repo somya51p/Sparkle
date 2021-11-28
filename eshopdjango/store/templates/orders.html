@@ -4,6 +4,22 @@
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
+
+<header id="d_header">
+    <nav>
+        <a href="/store" class="sans left_link">New Arrivals</a>
+        <a href="/cart" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"></a>
+        {% if request.session.customer %}
+        <a href="/logout" class="sans right-link"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+        {% else %}
+        <a href="/login" class="sans right-link"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+         {% endif %}
+        <div class="search__container right-link">
+            <input class="search__input" type="text" placeholder="Search">
+        </div>
+    </nav>
+</header>
+
 <div class="container">
    <div class="border rounded p-4 m-4">
         <p class="display-4 pl-4 ml-4">Your Orders</p>
