@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %}
+<!-- <div class="move_right" id="page_cover">
+    <img src="{% static 'images/tiles/homepage_cover.jpg' %}" alt="">
+</div>
+<section class="login_signup_container">
+    <form action="/login" method="post" class="login_grid">
+        <h4 class="login_title serif">Login</h4>
+        <div class="email_field">
+            <label for="email" class="sans">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="example@abc.com" required>
+        </div>
+        <div class="pass_field">
+            <label for="pwd" class="sans">Password:</label><br>
+            <input type="password" id="pwd" name="pwd" minlength="8" required>
+        </div>
+        <div class="rmf">
+            <label class="rmf_container sans">Remember me
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+              </label>
+        </div>
+        <a href="#" class="fpass sans">Forget Password?</a>
+        <a class="cta login_btn">
+            <input type="submit" value="Login" class="serif"></input>
+        </a>
+        <h5 class="sign_swth sans">Not registered yet?<a href="#" id="ani" class="sign_swth_link">Create an Account</a></h5>
+    </form>
+</section> -->
+
+
+<div class="container">
+    <div class="p-4 m-4">
+        <div class="col-lg-4 mt-4 border mb-4 mx-auto rounded pt-4">
+            <div class="text-center col">
+            
+                <img 
+                src="" alt=""
+                class="" style="height: 150px;">
+            <hr>
+            <div class="display-8">Create An Account</div>
+            <hr>
+            </div>
+            <h3 hidden class="alert alert-light border mt-4 mb-4 rounded">Login Here</h3>
+            <form action="/login" method="POST">
+                
+                {% csrf_token %}
+
+                {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
+                <!-- email -->
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input required type="email" name="email" id=""
+                    value="{{values.email}}" 
+                    class=" form-control-sm form-control" placeholder="example@gmail.com">
+                </div>
+
+
+                <!-- password -->
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" 
+                    name="password" 
+                    id=""
+                     class="form-control form-control-sm" placeholder="********">
+                </div>
+
+                <hr>
+                <div class="form-group">
+                    <input class="btn btn-sm btn-info col-lg-4" type="submit" value="Login">
+                </div>
+
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

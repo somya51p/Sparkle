@@ -1,0 +1,147 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+   
+  <title>Sparkle</title>
+
+  <style>
+    nav{
+      background-color: white;
+    }
+    .one-edge-shadow {
+              box-shadow: 0 8px 2px -5px rgb(246, 245, 245);
+}
+.display-8{
+  font-weight: 200;
+  font-size: 30px;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- navbar -->
+  <header id="d_header">
+  <nav class="one-edge-shadow 
+  sticky-top navbar 
+  navbar-expand-lg
+   navbar-light bg-white">
+    <a class="navbar-brand" href="/home">E-Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="sans left_link nav-link" href="/store">Store <span class="sr-only">(current)</span></a>
+        </li>
+
+      </ul>
+
+
+      <ul class=" navbar-nav my-2 my-lg-0">
+        <li class="nav-item ">
+          <a class="sans right-link nav-link" href="/cart">Cart 
+            <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+            <span class="sr-only">(current)</span></a>
+        </li>
+        <!-- <header id="d_header">
+          <nav>
+              <a href="/store" class="sans left_link">New Arrivals</a>
+              <a href="/cart" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"></a>
+              {% if request.session.customer %}
+              <a href="/login" class="sans right-link"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+              {% else %}
+              <a href="/logout" class="sans right-link"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+               {% endif %}
+              <div class="search__container right-link">
+                  <input class="search__input" type="text" placeholder="Search">
+              </div>
+          </nav>
+      </header> -->
+        {% if request.session.customer %}
+        
+        <li class="nav-item ">
+          <a class="sans right-link nav-link" href="/orders">Orders<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="sans right-link nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+        </li>
+        {% else %}
+       
+        <li class="nav-item ">
+          <a class="sans right-link nav-link" href="/signup">Signup<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="sans right-link nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
+        <!-- <div class="search__container right-link">
+          <input class="search__input" type="text" placeholder="Search">
+      </div> -->
+
+
+      </ul>
+
+
+    </div>
+  </nav>
+</header>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+      <div class="ft_flex">
+          <div class="ft_one">
+              <img src="{% static 'logo/Sparkle.png' %}" alt="Logo" class="ft_logo">
+              <ul class="social_links">
+                  <li><a href="" class="sans ft_link">Facebook</a></li>
+                  <li><a href="" class="sans ft_link">Instagram</a></li>
+                  <li><a href="" class="sans ft_link">Pinterest</a></li>
+              </ul>
+          </div>
+          <div class="ft_two">
+              <h4 class="ft_title serif">About Us</h4>
+              <ul class="about_links">
+                  <li><a href="" class="sans ft_link">Our Story</a></li>
+                  <li><a href="" class="sans ft_link">Contact</a></li>
+              </ul>
+          </div>
+          <div class="ft_three">
+              <h4 class="ft_title serif">Policies</h4>
+              <ul class="policy_links">
+                  <li><a href="" class="sans ft_link">Privacy Policy</a></li>
+                  <li><a href="" class="sans ft_link">Return and Refund Policy</a></li>
+              </ul>
+          </div>
+      </div>
+      <h5 class="sans copyright">&copy; The Sparkle Fashion Inc. | Designed by <a href="">Aniket Bamotra</a></h5>
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

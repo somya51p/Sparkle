@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+
+
+<section class="cart_banner">
+  <div class="banner_container">
+      <img src="{% static 'images/tiles/homepage_cover.jpg' %}" alt=" Rings tile photo" class="banner_img">
+      <img src="{% static 'banner-title/Cart.svg' %}" alt="Rings written in script font" class="page_title cart_page_title">
+  </div>
+</section>
+
+
+<!-- <div class="container">
+   <div class="border rounded p-4 m-4">
+        <p class="display-4 pl-4 ml-4">Your Cart</p>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sno.</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for product in products %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img style="height: 80px;" class="rounded-circle" src="{{product.image.url}}" alt=""></td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price|currency}}</td>
+                    <td>{{product|cart_quantity:request.session.cart}}</td>
+                    <td>{{product|price_total:request.session.cart|currency}}</td>
+                </tr>
+
+                {% endfor %}
+               
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <th colspan="4"></th>
+                    <th class="" colspan="">Total</th>
+                    <th>{{products|total_cart_price:request.session.cart|currency}}</th>
+                </tr>
+            </tfoot>
+        </table>
+        <hr>
+        <div class="m-3 p-3">
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">Check out</a>
+        </div>
+   </div>
+</div> -->
+
+
+
+<section class="cart_container">
+  <h4 class="cart_title sans">Cart Items</h4>
+  <div class="cart">
+      <div class="cart_items_container">
+        {% for product in products %}
+          <div class="cart_items">
+            <img style="height: 200px;" src="{{product.image.url}}" alt="" class="cart_item_img">
+              <div class="item_desc">
+                  <h5 class="cart_item_name serif">{{product.name}}</h5>
+                  <p class="cart_item_prop sans">{{product.description}}</p>
+                  <p class="item_id sans">{{product.price|currency}}</p>
+              </div>
+              <div class="item_qnty">
+                  <label for="qnty" class="sans qnty_label">Quantity</label>
+                  <h3>{{product|cart_quantity:request.session.cart}}</h3>
+              </div>
+              <h4 class="item_price serif"><span>{{product|price_total:request.session.cart|currency}}</span></h4>
+              <!-- <h4 class="item_price2 serif">$<span>{{product|price_total:request.session.cart|currency}}</span></h4> -->
+              <div class="cart_btn">
+                  <div class="save_item_btn">
+                      <button class="material-icons-outlined">favorite</button>
+                  </div>
+                  <div class="delete_item_btn">
+                      <button class="material-icons-outlined">delete</button>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="price_container">
+          <h3 class="recipt_title serif">Your Order</h3>
+          <h5 class="sub_total sans">Sub-total:</h5><h5 class="sub_total_p sans"><span>{{products|total_cart_price:request.session.cart|currency}}</span></h5>
+          <!-- <h5 class="discount sans">Discount:</h5><h5 class="discount_p sans"><span>64.40</span></h5> -->
+          <div class="dlvry">
+              <label for="dlvry" class="sans dlvry_label">Delivery Type:</label>
+                  <select name="dlvry" id="dlvry">
+                      <option value="express">Express Delivery (One Day) +$5</option>
+                      <option value="regular">Normal Delivery (3-4 Days)</option>
+                    </select>
+          </div>
+          <!-- <h5 class="dlvry_p sans">$<span>5.00</span></h5> -->
+          <!-- <h5 class="vat sans">VAT (20%):</h5><h5 class="vat_p sans">$<span>60.00</span></h5> -->
+          <h5 class="total sans">Total:</h5><h5 class="total_p sans"><span>{{products|total_cart_price:request.session.cart|currency}}</span></h5>
+          <a href="/cart.html" class="cta pay_btn">
+              <h6 class="serif">Pay via PayPal</h6>
+          </a>
+      </div>
+      </div>
+</section>
+
+
+<!-- modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+              Check Out Form
+          </h5>
+          <hr>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="m-2 p-3">
+            <form action="/check-out" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="">Address</label>
+                  <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  
+                </div>
+                <div class="form-group">
+                    <label for="">Phone</label>
+                    <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  </div>
+
+                  <input type="submit" class="btn float-right btn-outline-info col-lg-6" value="Check out">
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
