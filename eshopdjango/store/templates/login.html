@@ -1,20 +1,38 @@
-{% extends 'base.html' %}
 {% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Sparkle Fashion</title>
+</head>
+<body>
 
-{% block content %}
-<!-- <div class="move_right" id="page_cover">
+<div class="move_right" id="page_cover">
     <img src="{% static 'images/tiles/homepage_cover.jpg' %}" alt="">
 </div>
 <section class="login_signup_container">
-    <form action="/login" method="post" class="login_grid">
+    <form action="/login" method="POST" class="login_grid">
+        {% csrf_token %}
+
+                {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
         <h4 class="login_title serif">Login</h4>
         <div class="email_field">
             <label for="email" class="sans">Email:</label><br>
-            <input type="email" id="email" name="email" placeholder="example@abc.com" required>
+            <input type="email" id="email" name="email" 
+                    value="{{values.email}}"  placeholder="example@abc.com" required>
         </div>
         <div class="pass_field">
             <label for="pwd" class="sans">Password:</label><br>
-            <input type="password" id="pwd" name="pwd" minlength="8" required>
+            <input type="password" id="pwd" name="password" 
+                    minlength="8" required>
         </div>
         <div class="rmf">
             <label class="rmf_container sans">Remember me
@@ -23,14 +41,14 @@
               </label>
         </div>
         <a href="#" class="fpass sans">Forget Password?</a>
-        <a class="cta login_btn">
-            <input type="submit" value="Login" class="serif"></input>
-        </a>
-        <h5 class="sign_swth sans">Not registered yet?<a href="#" id="ani" class="sign_swth_link">Create an Account</a></h5>
+        <div class="form-group">
+            <input class="btn btn-sm btn-info col-lg-4" type="submit" value="Login">
+        </div>
+        <h5 class="sign_swth sans">Not registered yet?<a href="/signup" id="ani" class="sign_swth_link">Create an Account</a></h5>
     </form>
-</section> -->
+</section>
 
-
+<!-- 
 <div class="container">
     <div class="p-4 m-4">
         <div class="col-lg-4 mt-4 border mb-4 mx-auto rounded pt-4">
@@ -53,16 +71,13 @@
                     {{error}}
                 </div>
                 {% endif %}
-                <!-- email -->
+                
                 <div class="form-group">
                     <label for="">Email</label>
                     <input required type="email" name="email" id=""
                     value="{{values.email}}" 
                     class=" form-control-sm form-control" placeholder="example@gmail.com">
                 </div>
-
-
-                <!-- password -->
                 <div class="form-group">
                     <label for="">Password</label>
                     <input type="password" 
@@ -80,6 +95,6 @@
             </form>
         </div>
     </div>
-</div>
-
-{% endblock %}
+</div> -->
+</body>
+</html>
