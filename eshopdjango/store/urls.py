@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views.home import Index , store, home
+from .views.home import Index , store, home, profile
 from .views.signup import Signup
 from .views.login import Login , logout
 from .views.cart import Cart
@@ -14,6 +14,7 @@ urlpatterns = [
     path('', Index.as_view(), name='homepage'),
     path('store', store , name='store'),
     path('home', home, name='home'),
+    path('profile', profile, name='profile'),
 
     path('signup', Signup.as_view(), name='signup'),
     path('login', Login.as_view(), name='login'),

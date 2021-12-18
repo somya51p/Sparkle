@@ -27,8 +27,13 @@
             <div class="name_field">
                 <label for="name" class="sans">First Name:</label><br>
                 <input class="alert" type="text" name="firstname"
-                id="" value="{{values.first_name}}" placeholder="John Smith" required>
+                id="" value="{{values.first_name}}" placeholder="John" required>
             </div>
+            <!-- <div class="lname_field">
+                <label for="name" class="sans">Last Name:</label><br>
+                <input class="alert" type="text" name="lastname"
+                id="" value="{{values.last_name}}" placeholder="Smith" required>
+            </div> -->
             <div class="ph_field">
                 <label for="phone" class="sans">Phone:</label><br>
                 <input type="tel" id="phone" name="phone" value="{{values.phone}}" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
@@ -47,7 +52,7 @@
                     <span class="checkmark"></span>
                   </label>
             </div>
-            <div class="form-group">
+            <div class="cta login_btn">
                 <input class="btn btn-sm btn-info" type="submit" value="Create An Account ">
             </div>
             <h5 class="sign_swth sans">Already have an Account?<a href="/login" id="login" class="sign_swth_link">Login</a></h5>
