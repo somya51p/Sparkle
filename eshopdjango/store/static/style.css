@@ -145,7 +145,8 @@ footer {
   height: auto;
   position: relative;
   padding-top: 5rem;
-  display: block;
+  bottom: 0px;
+  width: 100vw;
 }
 .ft_flex {
   display: flex;
@@ -424,13 +425,16 @@ footer a {
 }
 .filter_container {
   grid-area: flt;
-  margin-right: 3rem;
   border-right: 2px solid rgb(var(--dark-color), 0.3);
   white-space: nowrap;
   padding: 2rem;
 }
 .filter_ele ul {
   list-style: none;
+}
+.filter_ele a{
+  text-decoration: none;
+  color: rgb(var(--dark-color));
 }
 .filter_title {
   margin: 1.5rem;
@@ -444,15 +448,17 @@ footer a {
 .filter_container input {
   margin: 0rem 1rem 0rem 2rem;
 }
-.product_card_grid {
-  grid-area: pg;
-}
+
 .product_gallery {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: minmax(1, 100px);
-  grid-gap: 1rem;
-  margin-top: 2rem;
+  grid-gap: 1rem; */
+  grid-area: pg;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0rem 2rem;
 }
 
 .product_card {
@@ -588,6 +594,85 @@ footer a {
   border-radius: 5px;
   color: rgb(var(--light-color));
   font-weight: 600;
+}
+
+
+/* Product view popup */
+
+.prod_view_popup{
+  position: absolute;
+  z-index: 10;
+  border-radius: 20px;
+  top: 130%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(var(--light-color));
+  width: 70vw;
+  height: fit-content;
+  box-shadow: 0px 0px 10px 1px rgb(var(--dark-color), 0.2);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: minmax(4, 100px);
+  grid-template-areas: 
+    "imgc imgc imgc imgc . ci"
+    "imgc imgc imgc imgc ppi ppi"
+    "imgc imgc imgc imgc ppi ppi"
+    "imgc imgc imgc imgc ppi ppi";
+  opacity: 0;
+  z-index: -10;
+  transition: .3s ease;
+}
+.close_btn{
+  grid-area: ci;
+  justify-self: end;
+}
+.prod_popup_imgs{
+  grid-area: imgc;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: minmax(4, 100px);
+  grid-gap: 1rem;
+}
+.prod_popup_imgs img{
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#pop_img_1{
+  grid-column: 1/3;
+  grid-row: 1/3;
+}
+#pop_img_2{
+  grid-column: 3/5;
+  grid-row: 1/3;
+}
+#pop_img_3{
+  grid-column: 1/3;
+  grid-row: 3/5;
+}
+#pop_img_4{
+  grid-column: 3/5;
+  grid-row: 3/5;
+}
+.prod_popup_info{
+  grid-area: ppi;
+  margin-left: 1rem;
+}
+.prod_popup_info .prod_name{
+  font-size: 3ch;
+}
+.prod_popup_info .popup_prod_desc{
+  font-size: 1.5ch;
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+/* style for onclick func. */
+.open_popup{
+  opacity: 1;
+  top: 50%;
+  z-index: 10;
 }
 
 /* Product view page start */
@@ -1178,7 +1263,7 @@ footer a {
 .fav_page_btn .a_btn,
 .order_page_btn .a_btn,
 .print_item_btn,
-.edit_btn {
+.edit_btn{
   display: inline-block;
 }
 .fav_page_btn .a_btn .add_cart_btn,
@@ -1190,10 +1275,14 @@ footer a {
   border-color: rgb(var(--dark-color));
   background-color: transparent;
 }
+.delete_item_btn a{
+  text-decoration: none;
+  color: rgb(var(--dark-color));
+}
 .delete_item_btn .material-icons-outlined,
 .save_item_btn .material-icons-outlined,
 .print_item_btn .material-icons,
-.edit_btn .material-icons-outlined {
+.edit_btn .material-icons-outlined, .close_btn .material-icons-outlined {
   background-color: rgb(var(--light-color));
   font-family: "Material Icons";
   color: rgb(var(--dark-color));
@@ -1204,10 +1293,10 @@ footer a {
   font-size: 2.5ch;
   cursor: pointer;
 }
-.delete_item_btn:hover .material-icons-outlined,
+.delete_item_btn:hover .material-icons-outlined, .delete_item_btn:hover a,
 .save_item_btn:hover .material-icons-outlined,
 .print_item_btn:hover .material-icons,
-.edit_btn:hover .material-icons-outlined {
+.edit_btn:hover .material-icons-outlined, .close_btn:hover .material-icons-outlined {
   border-color: rgb(var(--accent-color));
   color: rgb(var(--accent-color));
 }
@@ -1225,7 +1314,7 @@ footer a {
   position: sticky;
   top: 0.5rem;
   width: 100%;
-  height: 39rem;
+  height: fit-content;
   border: 2px solid rgb(var(--dark-color), 0.2);
   box-shadow: 0px 0px 10px 1px rgb(var(--dark-color), 0.2);
   border-radius: 20px;
@@ -1234,6 +1323,9 @@ footer a {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: minmax(7, 50vh);
   grid-template-areas:
+    "addt addt addt addt"
+    "addc addc addc addc"
+    "addl addl addl addl"
     "rt rt rt rt"
     "rst rst rstp rstp"
     "rd rd rdp rdp"
@@ -1241,7 +1333,22 @@ footer a {
     "ot ot otp otp"
     "ort ort ortp ortp"
     "pay pay pay pay";
-  grid-gap: 0.5rem;
+  grid-gap: 1.5rem;
+}
+.add_title{
+  grid-area: addt;
+}
+.price_container .user_add{
+  grid-area: addc;
+  width: 100%;
+  box-shadow: none;
+  border: 2px solid;
+}
+.change_add{
+  grid-area: addl;
+  justify-self: end;
+  color: rgb(var(--accent-color));
+  cursor: pointer;
 }
 .recipt_title {
   grid-area: rt;
@@ -1319,6 +1426,10 @@ footer a {
 .sub_total_p span {
   font-size: 2.3ch;
 }
+
+/* address popup */
+
+
 
 /* login and sign up start */
 #page_cover {
