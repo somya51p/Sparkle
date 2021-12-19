@@ -107,7 +107,7 @@
                       <button class="material-icons-outlined">favorite</button>
                   </div>
                   <div class="delete_item_btn">
-                      <button class="material-icons-outlined">delete</button>
+                    <button class="material-icons-outlined"><a href="{% url 'delete_p' product.id %}"  onclick="return confirm('Do you really want to remove product?')">delete</a></button>
                   </div>
               </div>
           </div>

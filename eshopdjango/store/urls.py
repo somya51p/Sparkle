@@ -3,7 +3,7 @@ from django.urls import path
 from .views.home import Index , store, home, profile
 from .views.signup import Signup
 from .views.login import Login , logout
-from .views.cart import Cart
+from .views.cart import Cart, delete_p
 from .views.checkout import CheckOut
 from .views.orders import OrderView
 from .middlewares.auth import  auth_middleware
@@ -22,4 +22,5 @@ urlpatterns = [
     path('favorite', auth_middleware(Favorite.as_view()) , name='favorite'),
     path('check-out', CheckOut.as_view() , name='checkout'),
     path('orders', auth_middleware(OrderView.as_view()), name='orders'),
+    path('delete_p/<int:pid>', delete_p, name='delete_p'),
 ]

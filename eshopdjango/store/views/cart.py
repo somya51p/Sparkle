@@ -18,3 +18,8 @@ class Cart(View):
 #     return cart
 
 # def add_cart(request, product_id):
+
+def delete_p(request,pid):
+    cart = Product.objects.get(id=pid)
+    cart.delete()
+    return redirect('store')
