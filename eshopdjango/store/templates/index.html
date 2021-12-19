@@ -92,8 +92,7 @@
 		<!-- all products -->
 		<div id='products' class="product_cards_grid">
 			<div class="product_gallery">
-				{% for product in products %}
-				
+				{% for product in products %}	
 				<div class="product_card" id={{product.id}} style="width: 18rem;">
 					<a href="/desc" class="img_link" ><img class="prod_img" style="max-width:20rem; height: 12rem;" src="{{product.image.url}}" alt="Card image cap"></a>
 						<p class="prod_name serif">{{product.name}}</p>
