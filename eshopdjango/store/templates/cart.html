@@ -127,9 +127,9 @@
           <h5 class="dlvry_p sans">$<span>5.00</span></h5>
           <h5 class="vat sans">VAT (20%):</h5><h5 class="vat_p sans">$<span>60.00</span></h5>
           <h5 class="total sans">Total:</h5><h5 class="total_p sans"><span>{{products|total_cart_price:request.session.cart|currency}}</span></h5>
-          <a href="/cart" class="cta pay_btn">
-              <h6 class="serif">Pay via PayPal</h6>
-          </a>
+          
+          <div id="paypal-button-container"></div>
+
       </div>
       </div>
 </section>
@@ -173,6 +173,7 @@
     </div>
   </div>
 
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script>
       $("#profile").mouseenter(function() {
@@ -183,5 +184,46 @@
       });
             
   </script>
+  <script>
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+
+      style: {
+                color:  'blue',
+                shape:  'pill',
+                label:  'pay',
+                height: 40
+            },
+
+        // Set up the transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '88.44'
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+                // Successful capture! For demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+                // Replace the above to show a success message within this page, e.g.
+                // const element = document.getElementById('paypal-button-container');
+                // element.innerHTML = '';
+                // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                // Or go to another URL:  actions.redirect('thank_you.html');
+            });
+        }
+
+
+    }).render('#paypal-button-container');
+</script>
 
 {% endblock %}
