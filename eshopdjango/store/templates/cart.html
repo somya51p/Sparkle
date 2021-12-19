@@ -124,10 +124,10 @@
                       <option value="regular">Normal Delivery (3-4 Days)</option>
                     </select>
           </div>
-          <!-- <h5 class="dlvry_p sans">$<span>5.00</span></h5> -->
-          <!-- <h5 class="vat sans">VAT (20%):</h5><h5 class="vat_p sans">$<span>60.00</span></h5> -->
+          <h5 class="dlvry_p sans">$<span>5.00</span></h5>
+          <h5 class="vat sans">VAT (20%):</h5><h5 class="vat_p sans">$<span>60.00</span></h5>
           <h5 class="total sans">Total:</h5><h5 class="total_p sans"><span>{{products|total_cart_price:request.session.cart|currency}}</span></h5>
-          <a href="/cart.html" class="cta pay_btn">
+          <a href="/cart" class="cta pay_btn">
               <h6 class="serif">Pay via PayPal</h6>
           </a>
       </div>
