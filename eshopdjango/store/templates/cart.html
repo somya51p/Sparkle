@@ -128,7 +128,8 @@
           <h5 class="vat sans">VAT (20%):</h5><h5 class="vat_p sans">$<span>60.00</span></h5>
           <h5 class="total sans">Total:</h5><h5 class="total_p sans"><span>{{products|total_cart_price:request.session.cart|currency}}</span></h5>
           
-          <div id="paypal-button-container"></div>
+          <div id="paypal-button-container" class="cta">
+          </div>
 
       </div>
       </div>
@@ -184,8 +185,12 @@
       });
             
   </script>
+  <script src="https://www.paypal.com/sdk/js?client-id=Ad1sbmsltKEIiEuBT42h6EN0qb0vxbaL-lhTI4nlH8K79P2sCLHiQd5SHKnta0pBHyttbiQmdpLgD09v&currency=USD"></script>
   <script>
     // Render the PayPal button into #paypal-button-container
+    var amt2= "{{product.price}}";
+    var amt = 20;
+    // console.log(amt2);
     paypal.Buttons({
 
       style: {
@@ -200,7 +205,7 @@
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '88.44'
+                        value: amt
                     }
                 }]
             });

@@ -415,11 +415,11 @@ footer a {
 .pg_container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: minmax(1, 100px);
+  grid-template-rows: minmax(3, 100px);
   grid-template-areas:
     "flt pg pg pg pg pg pg"
     "flt pg pg pg pg pg pg"
-    "flt pg pg pg pg pg pg";
+    "flt pagi pagi pagi pagi pagi pagi";
   grid-gap: 0.3rem;
 }
 .filter_container {
@@ -559,6 +559,35 @@ footer a {
 .fav_btn button:hover {
   background-color: rgb(var(--accent-color));
   color: rgb(var(--light-color));
+}
+
+/* pagination */
+
+.pagination_container {
+  grid-area: pagi;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+.pagination {
+  border-bottom: 1px solid rgb(var(--dark-color));
+  padding: 0.5rem 1rem;
+}
+.pagi_num_link {
+  margin: 0rem 0.5rem;
+  text-decoration: none;
+  color: rgb(var(--dark-color));
+  margin-bottom: 0.5rem;
+}
+.pagi_num {
+  padding: 0.5rem 0.7rem;
+}
+.pagi_num_select {
+  background-color: rgb(var(--accent-color));
+  border-radius: 5px;
+  color: rgb(var(--light-color));
+  font-weight: 600;
 }
 
 /* Product view page start */
