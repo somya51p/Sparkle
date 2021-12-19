@@ -14,7 +14,7 @@
             <ul>
                 <li class="dd_ele sans"><a href="/profile" class="dd_ele_link">Profile</a></li>
                 <li class="dd_ele sans"><a href="/orders" class="dd_ele_link">Orders</a></li>
-                <li class="dd_ele sans"><a href="/store" class="dd_ele_link">Favourites</a></li>
+                <li class="dd_ele sans"><a href="/favorite" class="dd_ele_link">Favourites</a></li>
                 {% if request.session.customer %}
                 <li class="dd_ele sans" id="ls"><a href="/logout" class="dd_ele_link">Log Out</a></li>
                 {% else %}
@@ -95,7 +95,7 @@
 				{% for product in products %}
 				
 				<div class="product_card" id={{product.id}} style="width: 18rem;">
-					<a href="#" class="img_link" ><img class="prod_img" style="max-width:20rem; height: 12rem;" src="{{product.image.url}}" alt="Card image cap"></a>
+					<a href="/desc" class="img_link" ><img class="prod_img" style="max-width:20rem; height: 12rem;" src="{{product.image.url}}" alt="Card image cap"></a>
 						<p class="prod_name serif">{{product.name}}</p>
 						<p class="prod_price serif">{{product.price|currency}}</p>
 						<!-- {{product | is_in_cart:request.session.cart }} -->

@@ -62,3 +62,6 @@ def home(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+def desc(request):
+    return render(request, 'desc.html')
