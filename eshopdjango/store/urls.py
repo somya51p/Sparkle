@@ -12,8 +12,8 @@ from .views.favorite import Favorite
 urlpatterns = [
     
     path('', Index.as_view(), name='homepage'),
-    path('store', store , name='store'),
     path('home', home, name='home'),
+    path('store', store , name='store'),
     path('profile', profile, name='profile'),
     path('desc', desc, name='desc'),
     path('signup', Signup.as_view(), name='signup'),

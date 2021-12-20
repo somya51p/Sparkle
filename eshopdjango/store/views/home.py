@@ -41,7 +41,7 @@ class Index(View):
         # print()
         return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
 
-def store(request):
+def home(request):
     cart = request.session.get('cart')
     if not cart:
         request.session['cart'] = {}
@@ -60,7 +60,7 @@ def store(request):
     return render(request, 'index.html', data)
 
 
-def home(request):
+def store(request):
     return render(request, 'home.html')
 
 def profile(request):
