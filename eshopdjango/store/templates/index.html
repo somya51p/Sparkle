@@ -110,6 +110,27 @@
 							<input hidden type="text" name='product' value='{{product.id}}'>
 						</form>
 				</div>
+				<section class="prod_view_popup">
+					<div class="close_btn">
+						<button class="material-icons-outlined">close</button>
+					</div>
+					<div class="prod_popup_imgs">
+						<img src="{{product.image.url}}" alt="Ring 1 thumbnail image" id="pop_img_1">
+						<img src="{{product.image2.url}}" alt="Ring 1 side image" id="pop_img_2">
+						<img src="{{product.image3.url}}" alt="Ring 1 top image" id="pop_img_3">
+						<img src="{{product.image4.url}}" alt="Ring 1 close up image" id="pop_img_4">
+					</div>
+					<div class="prod_popup_info">
+						<h6 class="prod_name serif">{{product.name}}</h6>
+						<p class="popup_prod_desc sans">{{product.description}}</p>
+						<h4 class="prod_price serif">{{product.price|currency}}</h4>
+						<form action="/#{{product.id}}" method="POST" class="cta">
+							{% csrf_token %}
+							<input type="submit" class="serif" value="Add to Bag"></input>
+							<input hidden type="text" name='product' value='{{product.id}}'>
+						</form>
+					</div>
+				</section>
 				{% endfor %}
 			</div>
 			<div class="pagination_container">
@@ -127,29 +148,6 @@
 		
 	</div>
 </div>
-{% for product in products %}
-<section class="prod_view_popup">
-	<div class="close_btn">
-		<button class="material-icons-outlined">close</button>
-	</div>
-    <div class="prod_popup_imgs">
-		<img src="{{product.image.url}}" alt="Ring 1 thumbnail image" id="pop_img_1">
-		<img src="{{product.image.url}}" alt="Ring 1 side image" id="pop_img_2">
-		<img src="{{product.image.url}}" alt="Ring 1 top image" id="pop_img_3">
-		<img src="{{product.image.url}}" alt="Ring 1 close up image" id="pop_img_4">
-	</div>
-	<div class="prod_popup_info">
-		<h6 class="prod_name serif">Ring 1</h6>
-		<p class="popup_prod_desc sans">This is a test, Red color, Silver.</p>
-		<h4 class="prod_price serif"><span>$</span>22</h4>
-		<form action="/#{{product.id}}" method="POST" class="cta">
-			{% csrf_token %}
-			<input type="submit" class="serif" value="Add to Bag"></input>
-			<input hidden type="text" name='product' value='{{product.id}}'>
-		</form>
-	</div>
-</section>
-{% endfor %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
