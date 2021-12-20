@@ -64,14 +64,24 @@
           </div>
           {% endfor %}
         </div>
-        <div class="price_container">
+        <form class="price_container" action="/check-out" method="POST">
             <h3 class="add_title serif">Delivery Address</h3>
-            <div class="user_add">
-                <h4 class="serif" id="name_on_add">Alex Rider</h4>
+            
+                <!-- <h4 class="serif" id="name_on_add">Alex Rider</h4>
                 <p class="sans" id="add">221B, Baker Street, Floral Park<br>near John's Bakery</p>
-                <p class="sans" id="city_on_add">London, 11001 <br>Contact Number: 2345763452</p>
-            </div>
-            <h5 class="change_add sans">Change/Add Address</h5>  
+                <p class="sans" id="city_on_add">London, 11001 <br>Contact Number: 2345763452</p> -->
+                <div  class="user_add_cart">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="" class="sans">Address</label>
+                      <textarea type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId"></textarea>   
+                    </div>
+                    <div class="form-group">
+                        <label class="sans" for="">Phone</label>
+                        <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                    </div>
+                </div>
+             
           <h3 class="recipt_title serif">Your Order</h3>
           <h5 class="sub_total sans">Sub-total:</h5><h5 class="sub_total_p sans"><span>{{products|total_cart_price:request.session.cart|currency}}</span></h5>
           <!-- <h5 class="discount sans">Discount:</h5><h5 class="discount_p sans"><span>64.40</span></h5> -->
@@ -86,32 +96,16 @@
           <h5 class="vat sans">VAT (20%):</h5><h5 class="vat_p sans">$<span>60.00</span></h5>
           <h5 class="total sans">Total:</h5><h5 class="total_p sans"><span>{{products|total_cart_price:request.session.cart|currency}}</span></h5>
           
-          <div id="paypal-button-container" class="pay_btn">
-          </div>
+          <div id="paypal-button-container" class="pay_btn"></div>
 
-      </div>
-      </div>
+        <div class="cta">
+			<input type="submit" class="serif" value="Complete Purchase"></input>
+		</div>
+        
+      </form>
 </section>
 
  <!-- Address popup -->
-
-<div class="popup_container">
-    <form action="/check-out" method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-          <label for="">Address</label>
-          <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
-          
-        </div>
-        <div class="form-group">
-            <label for="">Phone</label>
-            <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
-          </div>
-
-          <input type="submit" class="btn float-right btn-outline-info col-lg-6" value="Check out">
-    </form>
-</div>
-
   
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

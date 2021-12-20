@@ -1416,17 +1416,39 @@ footer a {
     "odt odt odt odtp"
     "ot ot otp otp"
     "ort ort ortp ortp"
-    "pay pay pay pay";
+    "pay pay pay pay"
+    "cpur cpur cpur cpur";
   grid-gap: 1.5rem;
 }
 .add_title{
   grid-area: addt;
 }
-.price_container .user_add{
+.price_container .user_add_cart{
   grid-area: addc;
   width: 100%;
   box-shadow: none;
-  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.user_add_cart label{
+  font-weight: 600;
+  margin-right: 7rem;
+}
+.user_add_cart input, .user_add_cart textarea{
+  width: 30rem;
+  height: 2.4rem;
+  border: 2px solid rgb(var(--dark-color));
+  background-color: transparent;
+  border-radius: 5px;
+  font-family: var(--sans);
+  font-size: 2ch;
+  padding-left: 0.5rem;
+  color: rgb(var(--dark-color));
+}
+.user_add_cart textarea{
+  padding: 0.5rem;
+  height: 3rem;
 }
 .change_add{
   grid-area: addl;
@@ -1511,6 +1533,9 @@ footer a {
   font-size: 2.3ch;
 }
 
+.price_container .cta{
+  grid-area: cpur;
+}
 /* address popup */
 
 
