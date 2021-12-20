@@ -1,8 +1,11 @@
 from django.shortcuts import render , redirect , HttpResponseRedirect
+from django.http import Http404
 from store.models.product import Product
 from store.models.category import Category
 from django.views import View
-
+from store.models.customer import Customer
+from store.models.orders import Order
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 class Index(View):
@@ -61,7 +64,12 @@ def home(request):
     return render(request, 'home.html')
 
 def profile(request):
-    return render(request, 'profile.html')
+    # user = Customer.objects.all().order_by('-id')
+    context = {
+        'user' : Customer.objects.get(id=2),
+        # 'orders' : Order.objects.get(),
+    }
+    return render(request, 'profile.html', context)
 
 def desc(request):
     return render(request, 'desc.html')
